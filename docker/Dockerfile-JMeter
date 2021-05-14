@@ -60,4 +60,4 @@ COPY ./jmeter_files/* /tests/
 # Add entrypoint
 COPY docker/entrypoint.sh /
 
-#ENTRYPOINT ["/entrypoint.sh"]
+ENTRYPOINT ["/entrypoint.sh"]
