@@ -15,7 +15,7 @@ env:
 jobs:
   include:
   - stage: Build
-    if: branch = master AND type != pull_request
+    if: branch = docker-compose AND type != pull_request
     os: linux
     arch: amd64
     script:
@@ -42,7 +42,7 @@ jobs:
       - './.ci/build.sh -f docker/Dockerfile-JMeter --image ${DOCKER_IMAGE} --tag driver --push --build-args "JMETER_VERSION=5.3 JMETER_PLUGIN_LIST=websocket-samplers"'
 
   - stage: Tag
-    if: branch = master AND type != pull_request
+    if: branch = docker-compose AND type != pull_request
     os: linux
     script:
       - './.ci/tag-image.sh --image ${DOCKER_IMAGE}:8-openliberty-db2 --tags "openliberty-db2 8-openliberty openliberty 8-db2 db2 8 latest"'
@@ -51,7 +51,7 @@ jobs:
       - './.ci/tag-image.sh --image ${DOCKER_IMAGE}:8-websphereliberty-derby --tags "websphereliberty-derby"'
 
   - stage: Manifest
-    if: branch = master AND type != pull_request
+    if: branch = docker-compose AND type != pull_request
     os: linux
     script:
       - sudo bash ./.ci/enable-experimental.sh
