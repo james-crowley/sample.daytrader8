@@ -6,7 +6,7 @@ dist: bionic
 
 env:
   global:
-    - GIT_BRANCH=$TRAVIS_BRANCH
+    - GIT_BRANCH="master"
     - IS_PULL_REQUEST=$TRAVIS_PULL_REQUEST
     - DOCKER_NAMESPACE=jamescrowleyibm
     - DOCKER_IMAGE=daytrader
