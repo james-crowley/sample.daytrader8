@@ -55,7 +55,7 @@ RUN curl -fsSLO http://search.maven.org/remotecontent?filepath=kg/apc/jmeter-plu
     && ${JMETER_HOME}/bin/PluginsManagerCMD.sh status
 
 # Add JMX Scripts
-COPY ../jmeter_files/* /tests/
+COPY ./jmeter_files/* /tests/
 
 # Add entrypoint
 COPY docker/entrypoint.sh /

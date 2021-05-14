@@ -44,6 +44,7 @@ jobs:
   - stage: Tag
     if: branch = docker-compose AND type != pull_request
     os: linux
+    arch: s390x
     script:
       - './.ci/tag-image.sh --image ${DOCKER_IMAGE}:8-openliberty-db2 --tags "openliberty-db2 8-openliberty openliberty 8-db2 db2 8 latest"'
       - './.ci/tag-image.sh --image ${DOCKER_IMAGE}:8-websphereliberty-db2 --tags "websphereliberty-db2 8-websphereliberty websphereliberty"'
@@ -53,6 +54,7 @@ jobs:
   - stage: Manifest
     if: branch = docker-compose AND type != pull_request
     os: linux
+    arch: s390x
     script:
       - sudo bash ./.ci/enable-experimental.sh
       - sudo bash ./.ci/manifest.sh --image ${DOCKER_IMAGE} --manifest 8-openliberty-db2 --push
