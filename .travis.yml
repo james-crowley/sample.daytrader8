@@ -6,7 +6,7 @@ dist: bionic
 
 env:
   global:
-    - GIT_BRANCH="master"
+    - GIT_BRANCH=$TRAVIS_BRANCH
     - IS_PULL_REQUEST=$TRAVIS_PULL_REQUEST
     - DOCKER_NAMESPACE=jamescrowleyibm
     - DOCKER_IMAGE=daytrader
@@ -15,7 +15,7 @@ env:
 jobs:
   include:
   - stage: Build
-    if: branch = docker-compose AND type != pull_request
+    if: branch = master AND type != pull_request
     os: linux
     arch: amd64
     script:
@@ -42,7 +42,7 @@ jobs:
       - './.ci/build.sh -f docker/Dockerfile-JMeter --image ${DOCKER_IMAGE} --tag driver --push --build-args "JMETER_VERSION=5.3 JMETER_PLUGIN_LIST=websocket-samplers"'
 
   - stage: Tag
-    if: branch = docker-compose AND type != pull_request
+    if: branch = master AND type != pull_request
     os: linux
     arch: s390x
     script:
@@ -52,7 +52,7 @@ jobs:
       - './.ci/tag-image.sh --image ${DOCKER_IMAGE}:8-websphereliberty-derby --tags "websphereliberty-derby"'
 
   - stage: Manifest
-    if: branch = docker-compose AND type != pull_request
+    if: branch = master AND type != pull_request
     os: linux
     arch: s390x
     script:
